@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+        }
+
+        .background {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://allgeotrip.ru/sites/default/files/mcheta-sliyanie-rek-foto.jpg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px black;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #ff4b4b;
+        }
+
+        .tour-preview {
+            background: rgba(255, 255, 255, 0.95);
+            color: black;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .tour-preview img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: #90ee90;
+            margin-top: 15px;
+        }
+
+        .error {
+            color: #ffb3b3;
+            margin-top: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="container">
+    <h1>Book Your Georgian Adventure</h1>
+
+    <form id="bookingForm">
+        <label for="tour">Choose a tour:</label>
+        <select id="tour" required></select>
+
+        <div id="tourPreview" class="tour-preview hidden"></div>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="message">Message (Telegram/WhatsApp):</label>
+        <textarea id="message" rows="4" required></textarea>
+
+        <label for="date">Preferred Date:</label>
+        <input type="date" id="date" required>
+
+        <button type="submit">Submit Booking</button>
+    </form>
+
+    <p id="response" class=""></p>
+</div>
+
+<script>
+    const tours = [
+        {
+            id: 1,
+            name: 'Makhuntseti Waterfall & Queen Tamar Bridge',
+            description: 'Waterfall • Stone Bridge • Wine Tasting\nDuration: 4–5 hours | From $50',
+            imageUrl: 'https://cdn.getyourguide.com/img/tour/6e6e2da42561c5ef80dcf48246a87c6b32dbf7848e26f733292ee52a54fcd22b.jpeg/145.jpg'
+        },
+        {
+            id: 2,
+            name: 'Kutaisi & Prometheus Cave',
+            description: 'Cave • Gelati Monastery • Market\nDuration: Full day | From $120',
+            imageUrl: 'https://cdn.getyourguide.com/img/tour/5c580e44476bc.jpeg/145.jpg'
+        },
+        {
+            id: 3,
+            name: 'Mtirala National Park',
+            description: 'Light Hiking • Waterfall • Rainforest\nDuration: 6–7 hours | From $70',
+            imageUrl: 'https://cdn.getyourguide.com/img/tour/d9ac52d1cf4e1a02645f16b53824fa480bd87c04eebddede4f34cc3a03b19d33.jpg/145.jpg'
+        },
+        {
+            id: 4,
+            name: 'Two-Day Tour: Vardzia & Rabati Castle',
+            description: 'Cave Monastery • Fortress • Overnight stay\nDuration: 2 days | From $250',
+            imageUrl: 'https://cdn.getyourguide.com/img/tour/af2f7a0d6a2d1481a4fea59bd8044869c763ca478877a5013dc80c2d7d2099f3.jpg/145.jpg'
+        },
+        {
+            id: 5,
+            name: 'Enguri Dam & Martvili Canyon Adventure',
+            description: 'Huge Dam • Boat in Canyon \nDuration: Full day | From $140',
+            imageUrl: 'https://cdn.georgiantravelguide.com/storage/files/enguris-jvris-tsqalsatsavi-reservoir-water-dam-2.jpg'
+        },
+        {
+            id: 6,
+            name: 'Borjomi & Rabati Castle Tour',
+            description: 'Borjomi Park • Mineral Springs • Cable Car\nRoyal Sulfur Baths (optional) • Green Monastery (10th c.)\nRabati Fortress in Akhaltsikhe • Local lunch in a family or cafe\nDuration: ~10–11 hours | From $130',
+            imageUrl: 'https://cdn.getyourguide.com/img/tour/eb6e953655dd381091f35803e6a5d9ef1da7075c7cf112800ee41b649f7b77f8.jpg/145.jpg'
+        }
+    ];
+
+    const tourSelect = document.getElementById('tour');
+    const tourPreview = document.getElementById('tourPreview');
+    const responseElement = document.getElementById('response');
+
+    tours.forEach(tour => {
+        const option = document.createElement('option');
+        option.value = tour.id;
+        option.textContent = tour.name;
+        option.dataset.description = tour.description;
+        option.dataset.image = tour.imageUrl;
+        tourSelect.appendChild(option);
+    });
+
+    tourSelect.addEventListener('change', () => {
+        const selected = tourSelect.options[tourSelect.selectedIndex];
+        const desc = selected.dataset.description;
+        const img = selected.dataset.image;
+
+        tourPreview.innerHTML = `
+      <strong>Description:</strong> <p>${desc.replace(/\n/g, '<br>')}</p>
+      ${img ? `<img src="${img}" alt="Tour image">` : ''}
+    `;
+        tourPreview.classList.remove('hidden');
+    });
+
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const selectedTourId = tourSelect.value;
+
+        const request = {
+            tourId: parseInt(selectedTourId),
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value,
+            date: document.getElementById('date').value
+        };
+
+        fetch('/api/v1/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(request)
+        })
+            .then(res => res.text())
+            .then(text => {
+                responseElement.textContent = text;
+                responseElement.className = 'success';
+                document.getElementById('bookingForm').reset();
+                tourPreview.classList.add('hidden');
+            })
+            .catch(err => {
+                console.error(err);
+                responseElement.textContent = 'Something went wrong. Please try again.';
+                responseElement.className = 'error';
+            });
+    });
+</script>
+
+</body>
+</html>
