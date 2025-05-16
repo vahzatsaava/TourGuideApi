@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour Booking</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -37,6 +38,7 @@
         }
 
         .container {
+            width: 100%;
             max-width: 600px;
             padding: 30px;
             border-radius: 15px;
@@ -53,6 +55,7 @@
             margin-top: 15px;
             font-weight: 600;
             text-shadow: 1px 1px 2px black;
+            text-align: left;
         }
 
         input, select, textarea {
@@ -112,6 +115,29 @@
 
         .hidden {
             display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            label {
+                font-size: 0.95em;
+            }
+
+            input, select, textarea, button {
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            .tour-preview {
+                font-size: 0.95em;
+            }
         }
     </style>
 </head>
@@ -173,7 +199,7 @@
         {
             id: 5,
             name: 'Enguri Dam & Martvili Canyon Adventure',
-            description: 'Huge Dam • Boat in Canyon \nDuration: Full day | From $140',
+            description: 'Huge Dam • Boat in Canyon\nDuration: Full day | From $140',
             imageUrl: 'https://cdn.georgiantravelguide.com/storage/files/enguris-jvris-tsqalsatsavi-reservoir-water-dam-2.jpg'
         },
         {
@@ -203,9 +229,10 @@
         const img = selected.dataset.image;
 
         tourPreview.innerHTML = `
-      <strong>Description:</strong> <p>${desc.replace(/\n/g, '<br>')}</p>
-      ${img ? `<img src="${img}" alt="Tour image">` : ''}
-    `;
+            <strong>Description:</strong>
+            <p>${desc.replace(/\n/g, '<br>')}</p>
+            ${img ? `<img src="${img}" alt="Tour image">` : ''}
+        `;
         tourPreview.classList.remove('hidden');
     });
 
