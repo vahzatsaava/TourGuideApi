@@ -20,7 +20,9 @@ public class Tour {
     private Long id;
     private String name;
     private String description;
-    private String image;
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TourImage> images = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Booking> bookings = new ArrayList<>();
