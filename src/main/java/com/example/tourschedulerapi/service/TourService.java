@@ -1,6 +1,7 @@
 package com.example.tourschedulerapi.service;
 
 import com.example.tourschedulerapi.entity.Tour;
+import com.example.tourschedulerapi.map.TourMapper;
 import com.example.tourschedulerapi.model.TourModel;
 import com.example.tourschedulerapi.repository.TourRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,19 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TourService {
     private final TourRepository tourRepository;
+    private final TourMapper tourMapper;
 
     public List<TourModel> getTour() {
-        List<Tour> tours = tourRepository.findAll();
+        List<Tour> tours = tourRepository.findAllWithImages();
         return tours.stream()
-                .map(res ->
-                {
-                    TourModel model = new TourModel();
-                    model.setDescription(res.getDescription());
-                    model.setId(res.getId());
-                    model.setName(res.getName());
-                    model.setImage(res.getImage());
-                    return model;
-                })
+                .map(tourMapper::toTourModel)
                 .toList();
     }
     public Tour findById(Long id){

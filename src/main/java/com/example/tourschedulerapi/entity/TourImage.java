@@ -6,21 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
 @Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Booking {
+public class TourImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
-    private String message;
-    private LocalDate date;
+    private String url;
 
     @ManyToOne
     @JoinColumn(name = "tour_id", nullable = false)
