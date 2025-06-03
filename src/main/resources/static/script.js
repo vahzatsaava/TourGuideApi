@@ -61,7 +61,7 @@ bookingForm.onsubmit = async (e) => {
         });
 
         if (res.ok) {
-            feedback.textContent = 'Бронирование успешно отправлено!';
+            feedback.textContent = 'Book created!';
             bookingForm.reset();
         } else {
             feedback.textContent = 'Ошибка при бронировании!';
