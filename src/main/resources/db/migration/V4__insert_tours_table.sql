@@ -1,24 +1,44 @@
 INSERT INTO tour (name, description)
-VALUES ('Batumi Evening Walk',
-        'Start: 18:00  Duration 4 hours. Includes: Transport, guide, yacht cruise\nType: Cultural & family-friendly.Experience Batumi at night: yacht ride, historic walk, major landmarks like Alphabet Tower, Piazza, and musical fountain.'),
-       ('Batumi & Botanical Garden',
-        'Start: 9:00 Duration: 6 hours Includes: Transport, guide, lunch, tickets Type: Cultural, family. Explore old Batumi, visit iconic religious sites, panoramic views from Sameba, and stroll through one of the world largest botanical gardens.'),
-       ('Mountain Adjara & Makhuntseti Waterfall',
-        'Start: 9:00 Duration: 6 hours Includes: Transport, guide, lunch, tickets Type: Cultural, family. Visit Gonio Fortress, rivers, Queen Tamar’s bridge, Makhuntseti waterfall, wine tasting, and home-style lunch.'),
-       ('Machakhela Ethnographic Tour',
-        'Start: 10:00 Duration: 6 hours Includes: Transport, guide, lunch, tickets Type: Cultural, family. Visit Borjgalo museum, Machakhela rifle monument, WWII artifacts, Mirveti waterfall, traditional lunch, Georgian dance workshop.'),
-       ('Ureki Beach & Subtropical Wonders',
-        'Start: 9:00 Duration: 6 hours Includes: Transport, guide, lunch, tickets Type: Family, cultural. Visit Petra Fortress, miniature park, dendrological park, and swim at Ureki healing black sand beach.'),
-       ('Martvili Canyon & Sataplia Reserve',
-        'Start: 8:00.Duration: 11 hours.Includes: Transport, guide, lunch, tickets (boat extra).Type: Cultural\nEnjoy Martvili canyon (optional boat ride), traditional lunch, explore Sataplia cave with dinosaur footprints.'),
-       ('Kutaisi & Prometheus Cave',
-        'Start: 8:00.Duration: 10 hours.Includes: Transport, guide, lunch, tickets.Type: Cultural\nTour Kutaisi city, visit UNESCO Gelati Monastery, Prometheus Cave with stalactites, and enjoy traditional meal.'),
-       ('Mtirala National Park Adventure',
-        'Start: 10:00.Duration: 6 hours.Includes: Transport, guide, lunch (zipline/horse optional).Type: Adventure.Walk through humid Kolkheti forest, lake, pristine waterfall, optional zipline/horseback ride, lunch in canyon.'),
-       ('4x4 Jeep Tour to Khulo & Goderdzi',
-        'Start: 7:00.Duration: 12 hours.Includes: Transport, guide, picnic, cable car.Type: Extreme, nature.Drive off-road through Adjara mountains to Khulo, Tagо cable car, alpine garden, Green Lake, and ski resort picnic.'),
-       ('Borjomi & Rabati Fortress (2 Days)',
-        'Start: Flexible.Duration: 2 days.Includes: Transport, guide, meals, overnight, tickets.Type: Historical & natural\nVisit Borjomi mineral park, Rabati fortress, Georgian food and nature views, overnight stay.');
+VALUES ('Batumi Evening Walk', 'Start: 18:00
+Duration 4 hours.
+Includes: Transport, guide, yacht cruise
+Type: Cultural & family-friendly. Experience Batumi at night: yacht ride, historic walk, major landmarks like Alphabet Tower, Piazza, and musical fountain.'),
+       ('Batumi & Botanical Garden', 'Start: 9:00
+Duration: 6 hours
+Includes: Transport, guide, lunch, tickets
+Type: Cultural, family. Explore old Batumi, visit iconic religious sites, panoramic views from Sameba, and stroll through one of the world largest botanical gardens.'),
+       ('Mountain Adjara & Makhuntseti Waterfall', 'Start: 9:00
+Duration: 6 hours
+Includes: Transport, guide, lunch, tickets
+Type: Cultural, family. Visit Gonio Fortress, rivers, Queen Tamar’s bridge, Makhuntseti waterfall, wine tasting, and home-style lunch.'),
+       ('Machakhela Ethnographic Tour', 'Start: 10:00
+Duration: 6 hours
+Includes: Transport, guide, lunch, tickets
+Type: Cultural, family. Visit Borjgalo museum, Machakhela rifle monument, WWII artifacts, Mirveti waterfall, traditional lunch, Georgian dance workshop.'),
+       ('Ureki Beach & Subtropical Wonders', 'Start: 9:00
+Duration: 6 hours
+Includes: Transport, guide, lunch, tickets
+Type: Family, cultural. Visit Petra Fortress, miniature park, dendrological park, and swim at Ureki healing black sand beach.'),
+       ('Martvili Canyon & Sataplia Reserve', 'Start: 8:00.
+Duration: 11 hours.
+Includes: Transport, guide, lunch, tickets (boat extra).
+Type: Cultural Enjoy Martvili canyon (optional boat ride), traditional lunch, explore Sataplia cave with dinosaur footprints.'),
+       ('Kutaisi & Prometheus Cave', 'Start: 8:00.
+Duration: 10 hours.
+Includes: Transport, guide, lunch, tickets.
+Type: Cultural Tour Kutaisi city, visit UNESCO Gelati Monastery, Prometheus Cave with stalactites, and enjoy traditional meal.'),
+       ('Mtirala National Park Adventure', 'Start: 10:00.
+Duration: 6 hours.
+Includes: Transport, guide, lunch (zipline/horse optional).
+Type: Adventure.Walk through humid Kolkheti forest, lake, pristine waterfall, optional zipline/horseback ride, lunch in canyon.'),
+       ('4x4 Jeep Tour to Khulo & Goderdzi', 'Start: 7:00.
+Duration: 12 hours.
+Includes: Transport, guide, picnic, cable car.
+Type: Extreme, nature.Drive off-road through Adjara mountains to Khulo, Tagо cable car, alpine garden, Green Lake, and ski resort picnic.'),
+       ('Borjomi & Rabati Fortress (2 Days)', 'Start: Flexible.
+Duration: 2 days.
+Includes: Transport, guide, meals, overnight, tickets.
+Type: Historical & natural Visit Borjomi mineral park, Rabati fortress, Georgian food and nature views, overnight stay.');
 
 INSERT INTO tour_image (url, tour_id)
 VALUES ('https://images.pexels.com/photos/27357698/pexels-photo-27357698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',

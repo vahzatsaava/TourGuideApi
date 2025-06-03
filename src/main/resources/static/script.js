@@ -1,4 +1,4 @@
-const API_BASE = 'https://tourguideapi.onrender.com/api/v1';
+const API_BASE = 'https://localhost:8087/api/v1';
 
 const tourList = document.getElementById('tour-list');
 const modal = document.getElementById('modal');
@@ -24,7 +24,7 @@ async function loadTours() {
             card.innerHTML = `
                 <img src="${tour.images[0] || 'https://via.placeholder.com/300'}" />
                 <h3>${tour.name}</h3>
-                <p>${tour.description}</p>
+                 <p>${tour.description.replaceAll('\n', '<br>')}</p>
                 <button onclick="openBooking(${tour.id})">Book</button>
             `;
             tourList.appendChild(card);
