@@ -6,25 +6,31 @@ const closeBtn = document.getElementById('close');
 const bookingForm = document.getElementById('bookingForm');
 const dateInput = document.getElementById('date');
 const feedback = document.getElementById('feedback');
+const loading = document.getElementById('loading');
 
 const today = new Date();
 today.setDate(today.getDate() + 1);
-const minDate = today.toISOString().split('T')[0];
-dateInput.min = minDate;
+dateInput.min = today.toISOString().split('T')[0];
 
 async function loadTours() {
-    console.log("Loading tours...");
     try {
         const res = await fetch(`${API_BASE}/tours`);
         const tours = await res.json();
 
-        tours.forEach(tour => {
+        loading.style.opacity = '0';
+        setTimeout(() => loading.style.display = 'none', 500);
+
+        tours.forEach((tour, index) => {
             const card = document.createElement('div');
             card.className = 'card';
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', index * 150);
+            card.setAttribute('data-aos-duration', '800');
+            card.setAttribute('data-aos-easing', 'ease-in-out');
             card.innerHTML = `
                 <img src="${tour.images[0] || 'https://via.placeholder.com/300'}" />
                 <h3>${tour.name}</h3>
-                 <p>${tour.description.replaceAll('\n', '<br>')}</p>
+                <p>${tour.description.replaceAll('\n', '<br>')}</p>
                 <button onclick="openBooking(${tour.id})">Book</button>
             `;
             tourList.appendChild(card);
@@ -38,7 +44,7 @@ async function loadTours() {
 function openBooking(tourId) {
     document.getElementById('tourId').value = tourId;
     modal.classList.remove('hidden');
-    feedback.textContent = ''; // очистить старое сообщение
+    feedback.textContent = '';
 }
 
 closeBtn.onclick = () => {
@@ -47,7 +53,6 @@ closeBtn.onclick = () => {
 
 bookingForm.onsubmit = async (e) => {
     e.preventDefault();
-
     const tourId = document.getElementById('tourId').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
