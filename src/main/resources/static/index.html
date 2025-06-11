@@ -6,19 +6,16 @@
     <title>Explore Georgia with Vazha</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
-
 <body>
 <header>
     <h1>Explore Georgia with Vazha</h1>
 </header>
 
-<main id="tour-list">
-    <!-- Tours will be injected here -->
-</main>
+<main id="tour-list"></main>
 
 <div id="modal" class="modal hidden">
     <div class="modal-content">
@@ -47,6 +44,10 @@
     </div>
 </footer>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="script.js"></script>
+<script>
+    AOS.init();
+</script>
 </body>
 </html>
