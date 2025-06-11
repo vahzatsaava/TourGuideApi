@@ -1,4 +1,4 @@
-const API_BASE = 'https://tourguideapi.onrender.com/api/v1';
+const API_BASE = '/api/v1';
 
 const tourList = document.getElementById('tour-list');
 const modal = document.getElementById('modal');
