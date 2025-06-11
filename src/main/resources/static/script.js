@@ -6,7 +6,6 @@ const closeBtn = document.getElementById('close');
 const bookingForm = document.getElementById('bookingForm');
 const dateInput = document.getElementById('date');
 const feedback = document.getElementById('feedback');
-const loading = document.getElementById('loading');
 
 const today = new Date();
 today.setDate(today.getDate() + 1);
@@ -15,10 +14,10 @@ dateInput.min = today.toISOString().split('T')[0];
 async function loadTours() {
     try {
         const res = await fetch(`${API_BASE}/tours`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+        }
         const tours = await res.json();
-
-        loading.style.opacity = '0';
-        setTimeout(() => loading.style.display = 'none', 500);
 
         tours.forEach((tour, index) => {
             const card = document.createElement('div');
@@ -37,7 +36,7 @@ async function loadTours() {
         });
     } catch (err) {
         console.error("Ошибка при получении туров:", err);
-        tourList.innerHTML = `<p style="color:red;">Ошибка загрузки туров. Проверь CORS на сервере!</p>`;
+        tourList.innerHTML = `<p style="color:red;">Ошибка загрузки туров: ${err.message}</p>`;
     }
 }
 
